@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import WOW from 'wowjs'
+//import WOW from 'wowjs'
 
 const Footer = class extends React.Component {
   constructor(props) {
@@ -8,7 +8,10 @@ const Footer = class extends React.Component {
     this.handleLoad = this.handleLoad.bind(this);
   }
   componentDidMount() {
-    new WOW.WOW({ live: false }).init();
+    import('wowjs')
+      .then((WOW) => WOW.WOW({ live: false }).init())
+      .catch((error) => console.error(error))
+    //new WOW.WOW({ live: false }).init();
     this.handleLoad();
   }
   handleLoad() {
